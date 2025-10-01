@@ -10,8 +10,9 @@ function LogWarnig(message){
     console.log(chalk.yellow(`[WARNING]: ${message}`))
 }
 
-module.exports= {
-    LogInfo: LogInfo,
-    LogError: LogError,
-    LogWarnig: LogWarnig
+const loggerMiddleware= (req, res, next) =>{
+    console.log(chalk.bgYellow(`[${new Date().toISOString()}] ${req.method} ${req.url}`))
+    next()
 }
+
+module.exports= loggerMiddleware 
